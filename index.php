@@ -25,7 +25,7 @@ $( "#sortable" ).disableSelection();
 		<?php 
 		$manifests = glob("*/manifest.xml");
 		
-		foreach (glob("*/manifest.xml") as $app) {
+		foreach (glob("apps/*/manifest.xml") as $app) {
     		$xml = simplexml_load_file($app);
     		if (!isset($xml->xSize) || !isset($xml->ySize)){
     			echo "xml file for ". $xml->name . " is malformed";
