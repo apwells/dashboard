@@ -1,0 +1,43 @@
+#wrapper {
+	margin: auto;
+	width: 95%;
+}
+
+body {
+	background: black;
+}
+
+#sortable { 
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#sortable li { 
+	display: inline;
+	float: left;
+	margin: 15px; 
+	padding: 0.4em; 
+	padding-left: 1.5em; 
+	font-size: 1.4em; 
+	height: 360px; 
+	width: 360px;
+}
+	
+#sortable li span { 
+	position: absolute;
+	margin-left: -1.3em; 
+}
+
+#apps {
+	height: 500px;
+}
+
+.app-block {
+	border: white solid 5px;
+}
+
+.clear {
+	clear: both;
+}
