@@ -17,14 +17,12 @@ body {
 #sortable li { 
 	display: inline;
 	float: left;
-	margin: 15px; 
-	padding: 0.4em; 
-	padding-left: 1.5em; 
+	margin: 15px;  
 	font-size: 1.4em; 
 	height: 360px; 
 	width: 360px;
 }
-	
+
 #sortable li span { 
 	position: absolute;
 	margin-left: -1.3em; 
