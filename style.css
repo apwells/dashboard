@@ -4,7 +4,7 @@
 }
 
 body {
-	background: black;
+	background: yellow;
 }
 
 #sortable { 
@@ -19,8 +19,7 @@ body {
 	float: left;
 	margin: 15px;  
 	font-size: 1.4em; 
-	height: 360px; 
-	width: 360px;
+
 }
 
 #sortable li span { 
@@ -39,3 +38,11 @@ body {
 .clear {
 	clear: both;
 }
+
+.xsize1 { width: 360px; }
+.xsize2 { width: 750px; }
+.xsize3 { width: 1140px; }
+
+.ysize1 { height: 360px; }
+.ysize2 { height: 750px; }
+.ysize3 { height: 1140px; }

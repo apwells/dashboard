@@ -22,12 +22,20 @@ $( "#sortable" ).disableSelection();
 <div id="wrapper">
 	<div id="apps">
 	<ul id="sortable">
-		<li class="app-block"><iframe width="100%" height="100%" frameborder=0 src="clock.application/index.html"></iframe></li>
-		<li class="app-block"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-		<li class="app-block"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-		<li class="app-block"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-		<li class="app-block"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-		<li class="app-block"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+		<?php 
+		$manifests = glob("*/manifest.xml");
+		
+		foreach (glob("*/manifest.xml") as $app) {
+    		$xml = simplexml_load_file($app);
+    		if (!isset($xml->xSize) || !isset($xml->ySize)){
+    			echo "xml file for ". $xml->name . " is malformed";
+    			break;
+    		}
+    		echo '<li class="app-block xsize' . $xml->xSize . ' ysize' . $xml->ySize . '"><iframe width="100%" height="100%" frameborder=0 src="';
+    		$indexfile = rtrim($app, "manifest.xml") . "index.html";
+    		echo $indexfile . '"></iframe></li>';
+		}
+		?>
 	</ul>
 	</div>
 	<div class="clear"></div>
