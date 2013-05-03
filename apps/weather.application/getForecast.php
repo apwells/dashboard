@@ -1,11 +1,10 @@
 <?php
-$json = file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric");
-//echo $json;
+$location= file_get_contents("http://localhost/currentlocation.xml");
+$json = file_get_contents("http://api.openweathermap.org/data/2.5/weather?lat=".$location['latitude']."&long=".$location['longitude']."&units=metric");
 $data = json_decode($json);
+echo $data;
 $weather = $data->{'weather'};
-echo $weather;
-$sky = $weather->{'main'};
-echo $sky;
 
+$sky = $weather->{'main'};
 
 ?>
