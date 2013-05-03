@@ -32,7 +32,7 @@ $( "#sortable" ).disableSelection();
     			break;
     		}
     		echo '<li class="app-block xsize' . $xml->xSize . ' ysize' . $xml->ySize . '"><iframe width="100%" height="100%" frameborder=0 src="';
-    		$indexfile = rtrim($app, "manifest.xml") . "index.html";
+    		$indexfile = rtrim($app, "manifest.xml") . "index.php";
     		echo $indexfile . '"></iframe></li>';
 		}
 		?>
