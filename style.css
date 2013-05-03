@@ -32,9 +32,22 @@ body {
 }
 
 .app-block {
-	border: white solid 5px;
+    background: white;
+	border-top: white solid 20px;
+	border-left: white solid 4px;
+	border-right: white solid 4px;
+	border-bottom: white solid 4px;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 40px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
-
+iframe{
+border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 40px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
 .clear {
 	clear: both;
 }
