@@ -23,10 +23,10 @@
 	change($("#next"),"images/next.png","images/nextover.png");	
 	change($("#play"),"images/play.png","images/playover.png");
 	change($("#pause"),"images/pause.png","images/pauseover.png");		
-	
-	$("#play").click(function(){$("#play").hide();$("#pause").show();});	
+	var music = new Audio("rollingstone.mp3");
+	$("#play").click(function(){music.play();$("#play").hide();$("#pause").show();});	
 		
-		$("#pause").click(function(){$("#pause").hide();$("#play").show();});	
+		$("#pause").click(function(){music.pause();$("#pause").hide();$("#play").show();});	
 		});
 		
 	</script>
@@ -45,7 +45,8 @@
 	</ul>
 	</div>
 	<div>
-	<b><p class="song">Bob Dylan - Like A Rolling Stone</p></b>
+	<b><p class="song"><?php
+	echo $_SERVER['REMOTE_ADDR']; ?>Bob Dylan - Like A Rolling Stone</p></b>
 	</div>
 	</body>
 </html>
