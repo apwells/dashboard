@@ -9,6 +9,12 @@
 	<script>
 	
 	$(document).ready(function(){
+	$.post("playpause.php", { value: "false"} );
+	<?php
+		if(in_array($_SERVER['REMOTE_ADDR'],array("127.0.0.1","localhost","::1")))
+		echo '
+	var song=new Audio();
+	var file;';?>
 	$("#pause").hide();
 	var change = function changeimg(id,normal,over){
 	
@@ -22,12 +28,78 @@
 	change($("#back"),"images/back.png","images/backover.png");
 	change($("#next"),"images/next.png","images/nextover.png");	
 	change($("#play"),"images/play.png","images/playover.png");
-	change($("#pause"),"images/pause.png","images/pauseover.png");		
-	var music = new Audio("rollingstone.mp3");
-	$("#play").click(function(){music.play();$("#play").hide();$("#pause").show();});	
+	change($("#pause"),"images/pause.png","images/pauseover.png");
+	
+	var playpause = function switchplaypause(){
+		if($("#play").is(':visible'))
+		{$("#play").hide();$("#pause").show();
+			
+			
+		}
+		else
+		{$("#pause").hide();$("#play").show();
+			
+			
+		}
+	};
+			
+	$("#play").click(function(){
+	playpause();
+	$.post("playpause.php", { value: "true"} );
+	<?php
+		if(in_array($_SERVER['REMOTE_ADDR'],array("127.0.0.1","localhost","::1")))
+		echo 'song.play();';?>
+	
+	});	
 		
-		$("#pause").click(function(){music.pause();$("#pause").hide();$("#play").show();});	
-		});
+		$("#pause").click(function(){
+		playpause();
+		$.post("playpause.php", { value: "false"} );
+		<?php
+		if(in_array($_SERVER['REMOTE_ADDR'],array("127.0.0.1","localhost","::1")))
+		echo 'song.pause();';?>
+		
+		});	
+	$("#next").click(function(){
+		$.post("next.php");
+	});
+	$("#back").click(function(){
+		$.post("back.php");
+	});		
+	setInterval(function(){ $.ajax({
+        type: "GET",
+	url: "musicstate.xml",
+	dataType: "xml",
+	success: function(xml) {
+	  
+      $("#currentsong").text($(xml).find('artist').text()+" "+$(xml).find('tune').text());
+      <?php
+		if(in_array($_SERVER['REMOTE_ADDR'],array("127.0.0.1","localhost","::1")))
+		echo '
+      if($(xml).find("file").text()!=file)
+      {
+      		file = $(xml).find("file").text();
+      		song.pause();
+      		song = new Audio("songs/"+file);
+      		if($(xml).find("play").text()=="true")
+      		song.play();
+      		else
+      		song.pause();
+      }
+      else
+      {
+      if($(xml).find("play").text()=="true")
+      		song.play();
+      		else
+      		song.pause();
+      }
+      ';?>
+      if(($(xml).find('play').text()=='false' && !$("#play").is(':visible'))||($(xml).find('play').text()=='true' && $("#play").is(':visible')))
+      playpause();
+      }
+});},200);
+	
+});
 		
 	</script>
 
@@ -45,8 +117,7 @@
 	</ul>
 	</div>
 	<div>
-	<b><p class="song"><?php
-	echo $_SERVER['REMOTE_ADDR']; ?>Bob Dylan - Like A Rolling Stone</p></b>
+	<b><p class="song" id="currentsong"></p></b>
 	</div>
 	</body>
 </html>
