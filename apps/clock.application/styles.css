@@ -12,21 +12,48 @@
 
 body {
 	position: fixed;
-	width: 360px;
+	width: 720px;
 	height: 360px;
 	background: #000 repeat;
 	color: #fff;
 	font: 1em/1.5em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	text-align: center;
 }
-
-ul {
+.temp
+{
+color: white;
+font-size: x-large;
+text-align: center;
+}
+.clock {
 	display: block;
 	width: 360px;
+	height: 360px;
 	margin: 0px;
 	padding: 0;
 }
-ul li {
+.wearherimg{
+	width: 300px;
+	height: 300px;
+	
+}
+.half
+{
+width: 360px;
+height: 360px;
+float:left;
+display: inline-block;
+}
+.full
+{
+width: 720px;
+height: 360px;
+display: inline-block;
+list-style: none;
+margin: 0;
+padding: 0;
+padding-left: 0;
+}
+.time {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -38,7 +65,7 @@ ul li {
 	height: 173px;
 	text-align: center;
 	line-height: 1.8;
-	text-shadow: 0px -2px 0px #000;
+	
 }
 .date
 {
@@ -53,5 +80,5 @@ ul li {
 	height: 173px;
 	text-align: center;
 	line-height: 1.8;
-	text-shadow: 0px -2px 0px #000;
+	
 }

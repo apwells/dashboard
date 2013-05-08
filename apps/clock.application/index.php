@@ -1,4 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?php 
+error_reporting(E_ERROR);
+try{$location= file_get_contents("http://localhost:80/currentlocation.xml");
+$json = file_get_contents("http://api.openweathermap.org/data/2.5/weather?lat=".$location['latitude']."&long=".$location['longitude']."&units=metric");
+$data = json_decode($json,true);
+$weather = $data['weather'][0];
+$sky = $weather['main'];
+$description = $weather['description'];
+$city = $data['name'];
+$temp = $data['main']['temp'];
+}catch(exception $e)
+{}
+if(!$json)
+{$sky='clouds';
+$city='Not Available';
+}
+echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Clock</title>
@@ -31,13 +47,13 @@ var mo=month[today.getMonth()];
 // add a zero in front of numbers<10
 m=checkTime(m);
 s=checkTime(s);
-document.getElementById('hours').innerHTML=h+"";
-document.getElementById('minutes').innerHTML=m+"";
-document.getElementById('day').innerHTML=d+"";
+document.getElementById("hours").innerHTML=h+"";
+document.getElementById("minutes").innerHTML=m+"";
+document.getElementById("day").innerHTML=d+"";
 switch (month){
 	case 1:
 }
-document.getElementById('month').innerHTML=mo+"";
+document.getElementById("month").innerHTML=mo+"";
 t=setTimeout(function(){startTime()},500);
 }
 
@@ -54,14 +70,35 @@ return i;
 </head>
 <body onload="startTime()">
 
-	<ul>
-		<li><span id="hours"></span></li>
-		<li><span id="minutes"></span></li>
-		<li><span id="day"></span></li>
-		<li><span id="month" class="date"></span></li>
+	<div class="full">
+	<div class="half">
+	<ul class="clock">
+		<li class="time"><span id="hours"></span></li>
+		<li class="time"><span id="minutes"></span></li>
+		<li class="time"><span id="day"></span></li>
+		<li class="time"><span id="month" class="date"></span></li>
 	</ul>
-	
+	</div>
+	<div class="half">
+	<div style="background: url(';
+	echo '/apps/clock.application/images/';
+	$conditions=array("clear","rain","drizzle","thunderstorm","snow","clouds","extreme");
+	if(in_array($sky,$conditions))
+	echo $sky;
+	else
+	echo 'clear';
+	echo '.png) no-repeat;height:110px;width:360px;padding-top:250px;">
+	<div style="height:110px;">
+	<b><p class="temp">';
+	echo $city;
+	echo " ";
+	echo floor($temp);echo '&degC</p></b>
+	</div>
+	</div>';
+	echo '
+	</div>
+	</div>
 	
 
 </body>
-</html>
+</html>';?>
